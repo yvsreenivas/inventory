@@ -1,0 +1,23 @@
+{% extends 'main/base_0.html' %}
+{% debug %}
+<!--Block content goes below-->
+{% load crispy_forms_tags %}
+
+
+
+{% block content %}
+{% include 'navbar.html' %}
+  <main role="main" class="container">
+    <div class="jumbotron">
+      <h1>{{header}}</h1>
+
+      <form method='POST' action=''>{% csrf_token %}
+        {{form|crispy}}
+        <input type="submit" value='Save'/>
+      </form>
+
+    </div>
+  </main>
+
+
+  {% endblock %}
