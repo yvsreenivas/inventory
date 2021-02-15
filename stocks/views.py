@@ -32,12 +32,18 @@ def user_login(request):
     else:
         return render(request, 'stocks/login.html', {})
 
+
 def home(request):
-	title = 'Home'
-	context = {
-	"header": title,
-	}
-	return render(request, "stocks/home.html",context)
+    title = 'Home'
+    context = {
+    "header": title,
+    }
+    if request.user.is_authenticated:
+        return render(request, "stocks/home.html",context)
+    else:
+        # render(request, "stocks/home.html",context)
+        return render(request, "stocks/login.html",context)
+
 
 
 @login_required
