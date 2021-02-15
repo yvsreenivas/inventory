@@ -84,7 +84,7 @@ def update_items(request, pk):
 		if form.is_valid():
 			form.save()
 			messages.success(request, 'Successfully Saved')
-			return reverse('list_items')
+			return redirect('list_items')
 
 	context = {
 		'form':form
@@ -97,7 +97,7 @@ def delete_items(request, pk):
 	if request.method == 'POST':
 		queryset.delete()
 		messages.success(request, 'Successfully Deleted')
-		return reverse('list_items')
+		return redirect('list_items')
 	return render(request, 'stocks/delete_items.html')
 
 @login_required
