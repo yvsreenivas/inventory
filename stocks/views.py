@@ -72,7 +72,10 @@ def add_items(request):
     form = StockCreateForm(request.POST or None)
 
     if form.is_valid():
-        form.save()
+        instance = form.save(commit=False)
+        instance.updated_by = request.user.username
+        instance.save()
+
         messages.success(request, 'Successfully Saved')
         return redirect('list_items')
     context = {
