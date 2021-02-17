@@ -1,7 +1,10 @@
-body {
-    background-color: #34eb6b;
+html,body{
+background-size: contain;
+background-repeat: no-repeat;
+background-color: #343a40;
+height: auto;
+font-family: 'Numans', sans-serif;
 }
-
 /*Align the title to the center of the page*/
 .table{
 	font-size: 13px;
