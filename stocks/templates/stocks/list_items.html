@@ -34,26 +34,26 @@
             <tr>
                 <th>SR.NO</th>
                 <th>CATEGORY</th>
+                <th>SUB CAT.</th>
                 <th>ITEM NAME</th>
-                <th>QUANTITY IN STORE</th>
+                <th>STOCK</th>
+                <th>UNITS</th>
+                <th>RATE</th>
                 <th>TIMESTAMP</th>
                 <th>LAST UPDATED</th>
-                <th>DELETE</th>
             </tr>
             </thead>
             {% for instance in queryset %}
                 <tr>
                     <td>{{forloop.counter}}</td>
                     <td>{{instance.category}}</td>
+                    <td>{{instance.subcategory}}</td>
                     <td><a href="{% url 'update_items' instance.id %}">{{instance.item_name}}</a></td>
                     <td><a href="{% url 'stock_detail' instance.id %}">{{instance.quantity}}</a></td>
+                    <td>{{instance.units}}</td>
+                    <td>{{instance.rate}}</td>
                     <td>{{instance.timestamp}}</td>
                     <td>{{instance.last_updated}}</td>
-                    <td><a href="{% url 'delete_items' instance.id %}">
-                            <!-- <i class="fa fa-trash-o" aria-hidden="true"></i> -->
-                            Delete
-                        </a>
-                    </td>
                 </tr>
 
             {% endfor %}

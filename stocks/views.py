@@ -77,10 +77,10 @@ def add_items(request):
         instance.save()
 
         messages.success(request, 'Successfully Saved')
-        return redirect('list_items')
+        return redirect('add_items')
     context = {
 		"form": form,
-		"header": "Add Asset/Item",
+		"header": "Add Assets or Consumables",
 	}
     return render(request, "stocks/add_items.html", context)
 

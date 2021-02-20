@@ -12,4 +12,4 @@ class StockCreateAdmin(admin.ModelAdmin):
 
 admin.site.register(UserProfileInfo)
 admin.site.register(Stock, StockCreateAdmin)
-admin.site.register(Category)
+admin.site.register(SubCategory)
