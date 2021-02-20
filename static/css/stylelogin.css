@@ -1,9 +1,9 @@
 /* Made with love by Mutiullah Samim*/
 
-@import url('https://fonts.googleapis.com/css?family=Numans');
+/* @import url('https://fonts.googleapis.com/css?family=Numans'); */
 
 html,body{
-background-image: url('/static/img/jumbo2.jpg');
+background-image: url('/static/img/jumbo5.png');
 background-size: contain;
 background-repeat: no-repeat;
 height: 100%;
@@ -16,7 +16,7 @@ align-content: center;
 }
 
 .card{
-height: 370px;
+height: 270px;
 margin-top: auto;
 margin-bottom: auto;
 background-color: #212529 !important;
@@ -39,10 +39,20 @@ cursor: pointer;
 color: white;
 }
 
+.card-body{
+  color: #ffffff;
+}
+
 .social_icon{
 position: absolute;
 right: 20px;
 top: -45px;
+}
+
+.logo_icon{
+position: absolute;
+right: 10px;
+top: 0px;
 }
 
 .input-group-prepend span{

@@ -20,8 +20,9 @@ class UserProfileInfoForm(forms.ModelForm):
 class StockCreateForm(forms.ModelForm):
   class Meta:
     model = Stock
-    fields = ['category', 'sub_category', 'part_no', 'item_no',
-    'HSN_code', 'item_name', 'quantity', 'stock_units']
+    fields = ['category', 'subcategory', 'part_no', 'item_no',
+    'item_name', 'manufacturer', 'quantity','units', 'rate' ]
+    # labels = {  'category': ('Category of the item'),}
 
   def clean_category(self):
     category = self.cleaned_data.get('category')
@@ -30,39 +31,39 @@ class StockCreateForm(forms.ModelForm):
     return category
 
   def clean_sub_category(self):
-    sub_category = self.cleaned_data.get('sub_category')
-    if not sub_category:
+    subcategory = self.cleaned_data.get('subcategory')
+    if not subcategory:
       raise forms.ValidationError('This field is required')
-    return sub_category
+    return subcategory
 
   def clean_part_no(self):
     part_no = self.cleaned_data.get('part_no')
     if not part_no:
       raise forms.ValidationError('This field is required')
-
-    stocks = Stock.objects.all()
-    for instance in stocks:
-        if instance.part_no == part_no:
-            raise forms.ValidationError(part_no + " exists")
     return part_no
 
   def clean_item_no(self):
     item_no = self.cleaned_data.get('item_no')
     if not item_no:
       raise forms.ValidationError('This field is required')
+
+    stocks = Stock.objects.all()
+    for instance in stocks:
+        if instance.item_no == item_no:
+            raise forms.ValidationError(item_no + " exists")
     return item_no
 
-  def clean_HSN_code(self):
-    HSN_code = self.cleaned_data.get('HSN_code')
-    if not HSN_code:
-      raise forms.ValidationError('This field is required')
-    return HSN_code
+  # def clean_HSN_code(self):
+  #   HSN_code = self.cleaned_data.get('HSN_code')
+  #   if not HSN_code:
+  #     raise forms.ValidationError('This field is required')
+  #   return HSN_code
 
-  def clean_stock_units(self):
-    stock_units = self.cleaned_data.get('stock_units')
-    if not stock_units:
+  def clean_units(self):
+    units = self.cleaned_data.get('units')
+    if not units:
       raise forms.ValidationError('This field is required')
-    return stock_units
+    return units
 
   def clean_item_name(self):
     item_name = self.cleaned_data.get('item_name')
@@ -75,24 +76,27 @@ class StockCreateForm(forms.ModelForm):
         raise forms.ValidationError(item_name + " exists")
     return item_name
 
-  
+  def clean_manufacturer(self):
+    manufacturer = self.cleaned_data.get('manufacturer')
+    if not manufacturer:
+      raise forms.ValidationError('This field is required')
+    return manufacturer
+
+
 class StockSearchForm(forms.ModelForm):
   class Meta:
     model = Stock
     fields = ['item_name']
 
-
 class StockUpdateForm(forms.ModelForm):
 	class Meta:
 		model = Stock
-		fields = ['category', 'sub_category', 'item_name', 'quantity']
-
+		fields = ['category', 'subcategory', 'item_name', 'quantity', 'rate']
 
 class IssueForm(forms.ModelForm):
 	class Meta:
 		model = Stock
 		fields = ['issue_quantity', 'issue_to']
-
 
 class ReceiveForm(forms.ModelForm):
 	class Meta:
