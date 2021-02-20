@@ -62,7 +62,7 @@ th {
 
  .navbar-brand {
 	 		position: relative;
-	    background: url('/static/img/logo-sq2.png');
+	    background: url("/static/img/logo-sq2.8e94a9e4ac01.png");
 	    width: 150px;
 	    left: 15px;
  }
@@ -72,7 +72,15 @@ th {
 	 height: 70px;
  }
 
- 
+ #id_category { width:400px; pointer-events: none;}
+ #id_subcategory { width:400px; pointer-events: none; }
+ #id_part_no { width:400px;  pointer-events: none; }
+ #id_item_no { width:400px;  pointer-events: none; }
+ #id_item_name { width:400px; pointer-events: none; }
+ #id_manufacturer { width:400px; }
+ #id_quantity { width:400px; }
+ #id_units { width:400px; }
+ #id_rate { width:400px; }
 
  .add-item-form{
     /* width: 70%;

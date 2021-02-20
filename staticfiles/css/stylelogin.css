@@ -16,11 +16,12 @@ align-content: center;
 }
 
 .card{
-height: 270px;
+height: 300px;
 margin-top: auto;
 margin-bottom: auto;
-background-color: green; !important;
+background-color: #6fa868 !important;
 width: 400px;
+
 }
 
 .social_icon span{

@@ -29,7 +29,7 @@ class Stock(models.Model):
 	category = models.CharField(max_length=15,blank=False,null=False,
 					choices=category_choice)
 	subcategory = models.ForeignKey(SubCategory, on_delete=models.CASCADE)
-	part_no = models.CharField(max_length=12, blank=False, null=False)
+	part_no = models.CharField(max_length=13, blank=False, null=False)
 	item_no = models.CharField(max_length=25, blank=True, null=True)
 	HSN_code = models.CharField(max_length=10, blank=True, null=True)
 	item_name = models.CharField(max_length=50, blank=True, null=True)
@@ -48,7 +48,6 @@ class Stock(models.Model):
 	reorder_level = models.IntegerField(default='0', blank=True, null=True)
 	last_updated = models.DateTimeField(auto_now_add=False, auto_now=True)
 	timestamp = models.DateTimeField(auto_now_add=True, auto_now=False)
-	export_to_CSV = models.BooleanField(default=False)
 	updated_by = models.CharField(max_length=50, blank=False, null=False)
 
 	def __str__(self):

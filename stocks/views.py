@@ -58,8 +58,9 @@ def list_items(request):
 	}
 	if request.method == 'POST':
 		queryset = Stock.objects.filter(
-										item_name__icontains=form['item_name'].value()
-										)
+					item_name__icontains=form['item_name'].value(),
+                    category__icontains=form['category'].value(),
+                    )
 		context = {
 		"form": form,
 		"header": title,
@@ -96,9 +97,10 @@ def update_items(request, pk):
 			return redirect('list_items')
 
 	context = {
-		'form':form
+		'form':form,
+        "header": "Update Assets or Consumables",
 	}
-	return render(request, 'stocks/add_items.html', context)
+	return render(request, 'stocks/update_items.html', context)
 
 @login_required
 def delete_items(request, pk):

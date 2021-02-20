@@ -54,3 +54,29 @@ th {
      box-shadow: 12px 12px 12px #e61c66;
      text-align: center;
  }
+
+  .navbar-brand,.nav-link {
+ 		background-color: #88ba3f;
+ 		color: #FFFFFF;
+ }
+
+ .navbar-brand {
+	 		position: relative;
+	    background: url('/static/img/logo-sq2.png');
+	    width: 150px;
+	    left: 15px;
+ }
+
+ #navbar-logo{
+	 width: 70px;
+	 height: 70px;
+ }
+
+ 
+
+ .add-item-form{
+    /* width: 70%;
+		padding-bottom: 150px;
+    margin-right: 10px;
+    margin-left: 10px; */
+ }

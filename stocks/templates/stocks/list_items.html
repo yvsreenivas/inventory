@@ -7,10 +7,11 @@
 
 {% block extra_head %}
     <link rel="stylesheet" href="/static/font-awesome/css/font-awesome.min.css">
-{% endblock%}
+{% endblock extra_head %}
+
+
 {% block content %}
 
-{% include 'navbar.html' %}
 <main role="main" class="container">
   {% if messages %}
         <ul class="messages">
