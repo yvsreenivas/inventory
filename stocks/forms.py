@@ -44,13 +44,7 @@ class StockCreateForm(forms.ModelForm):
 
   def clean_item_no(self):
     item_no = self.cleaned_data.get('item_no')
-    if not item_no:
-      raise forms.ValidationError('This field is required')
-
-    stocks = Stock.objects.all()
-    for instance in stocks:
-        if instance.item_no == item_no:
-            raise forms.ValidationError(item_no + " exists")
+    
     return item_no
 
   # def clean_HSN_code(self):
