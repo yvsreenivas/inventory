@@ -23,7 +23,7 @@ class StockCreateForm(forms.ModelForm):
     fields = ['category', 'subcategory', 'part_no', 'item_no',
     'item_name', 'manufacturer', 'quantity','units', 'rate' ]
     # labels = {  'category': ('Category of the item'),}
-    widgets = {'part_no': forms.TextInput(attrs={'data-mask':"000-00-00-000"})}
+    widgets = {'part_no': forms.TextInput(attrs={'data-mask':"000-00-00000-00"})}
 
   def clean_category(self):
     category = self.cleaned_data.get('category')
