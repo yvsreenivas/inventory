@@ -9,21 +9,24 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarCollapse">
       <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
-          <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
-        </li>
         {% if request.user.is_authenticated %}
-          <li class="nav-item active">
-            <a class="nav-link" href="/list_items">List items <span class="sr-only">(current)</span></a>
-          </li>
-          <li class="nav-item active">
-            <a class="nav-link" href="/add_items">Parts Master <span class="sr-only">(current)</span></a>
-          </li>
+        <div class="btn-group">
+          <button type="button" class="btn btn-primary">Parts master</button>
+          <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <span class="sr-only">Toggle Dropdown</span>
+          </button>
+          <div class="dropdown-menu">
+            <a class="dropdown-item" href="/add_items">Add Item</a>
+            <a class="dropdown-item" href="/list_items">List Items</a>
+            <!-- <div class="dropdown-divider"></div> -->
+            <!-- <a class="dropdown-item" href="#">Separated link</a> -->
+          </div>
+        </div>
         {% endif %}
       </ul>
       <ul class="navbar-nav">
        {% if request.user.is_authenticated %}
-         <li><a href="{% url 'logout' %}"><button class="btn btn-danger">{{ user }} | Logout</button></a></li>
+         <li><a href="{% url 'logout' %}"><button class="btn btn-primary">{{ user }} | Logout</button></a></li>
        {% else %}
          <li><a href="{% url 'stocks:user_login' %}">Login</a></li>
        {% endif %}

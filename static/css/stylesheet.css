@@ -1,5 +1,7 @@
 html,body{
+background-image: url('/static/img/jumbo5.png');
 background-size: contain;
+background-size: cover;
 background-repeat: no-repeat;
 background-color: #343a40;
 height: auto;
@@ -56,7 +58,7 @@ th {
  }
 
   .navbar-brand,.nav-link {
- 		background-color: #88ba3f;
+ 		background-color: #007bff;
  		color: #FFFFFF;
  }
 
@@ -72,7 +74,7 @@ th {
 	 height: 70px;
  }
 
- 
+
 
  .add-item-form{
     /* width: 70%;
@@ -80,3 +82,6 @@ th {
     margin-right: 10px;
     margin-left: 10px; */
  }
+
+ 
+	 

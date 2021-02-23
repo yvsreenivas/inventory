@@ -56,13 +56,13 @@ th {
  }
 
   .navbar-brand,.nav-link {
- 		background-color: #007bff;
+ 		background-color: blue;
  		color: #FFFFFF;
  }
 
  .navbar-brand {
 	 		position: relative;
-	    background: url('/static/img/logo-sq2.png');
+	    background: url("/static/img/logo-sq2.8e94a9e4ac01.png");
 	    width: 150px;
 	    left: 15px;
  }
