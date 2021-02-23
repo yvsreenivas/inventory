@@ -36,6 +36,7 @@
                 <th>SR.NO</th>
                 <th>CATEGORY</th>
                 <th>SUB CAT.</th>
+                <th>PART NO</th>
                 <th>ITEM NAME</th>
                 <th>STOCK</th>
                 <th>UNITS</th>
@@ -49,6 +50,7 @@
                     <td>{{forloop.counter}}</td>
                     <td>{{instance.category}}</td>
                     <td>{{instance.subcategory}}</td>
+                    <td>{{instance.part_no}}</td>
                     <td><a href="{% url 'update_items' instance.id %}">{{instance.item_name}}</a></td>
                     <td><a href="{% url 'stock_detail' instance.id %}">{{instance.quantity}}</a></td>
                     <td>{{instance.units}}</td>
