@@ -4,9 +4,9 @@ from .models import *
 
 
 class StockCreateAdmin(admin.ModelAdmin):
-   list_display = ['id','subcategory', 'part_no', 'item_name', 'quantity']
+   list_display = ['id','category','subcategory', 'part_no', 'item_name', 'quantity']
    form = StockCreateForm
-   list_filter = ['subcategory']
+   list_filter = ['category', 'subcategory']
    search_fields = ['category', 'item_name']
 
 
