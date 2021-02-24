@@ -67,6 +67,7 @@ def list_items(request):
         item_name__icontains=form['item_name'].value(),
             category__icontains=form['category'].value(),
         )
+        total = queryset.aggregate(total=Sum(F('rate') * F('quantity'),output_field=FloatField()))['total']
 
         if form['export_to_CSV'].value() == True:
             response = HttpResponse(content_type='text/csv')
@@ -84,6 +85,7 @@ def list_items(request):
         context = {
         "form": form,
         "header": title,
+        "total": total,
         "queryset": queryset,
     }
     return render(request, "stocks/list_items.html", context)
