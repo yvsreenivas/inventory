@@ -8,7 +8,7 @@ from django.http import HttpResponseRedirect, HttpResponse
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 import csv
-from django.db.models import Sum
+from django.db.models import Sum, F, FloatField
 # returns {'field_name__sum': 1000} for example
 
 @login_required
@@ -54,10 +54,7 @@ def list_items(request):
     form = StockSearchForm(request.POST or None)
     queryset = Stock.objects.all()
     total = ( Stock.objects
-            .filter(rate__isnull=False)
-            .aggregate(
-                total=Sum('rate', field="rate*quantity")
-             )['total']
+                .aggregate(total=Sum(F('rate') * F('quantity'), output_field=FloatField()))['total']
          )
     context = {
         "header": title,

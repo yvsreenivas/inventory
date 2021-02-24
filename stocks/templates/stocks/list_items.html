@@ -1,7 +1,7 @@
 {% extends 'main/base_0.html' %}
 {% load crispy_forms_tags %}
 {% load staticfiles %}
-
+{% load humanize %}
 
 <!--Block content goes below-->
 
@@ -24,7 +24,7 @@
         <div class="header">
           {{header}}
         </div>
-        <span class="total_value">Value of Stock:{{total}}</span>
+        <span class="total_value">Value of Stock:{{total | floatformat:"0" | intcomma}}</span>
         <form method='POST' action=''>{% csrf_token %}
             {{form|crispy}}
                 <input type="submit" value='Search'/>
@@ -56,7 +56,7 @@
                     <td><a href="{% url 'update_items' instance.id %}">{{instance.item_name}}</a></td>
                     <td><a href="{% url 'stock_detail' instance.id %}">{{instance.quantity}}</a></td>
                     <td>{{instance.units}}</td>
-                    <td>{{instance.rate}}</td>
+                    <td>{{instance.rate | intcomma }} </td>
                     <td>{{instance.timestamp}}</td>
                     <td>{{instance.last_updated}}</td>
                 </tr>
