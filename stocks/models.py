@@ -10,6 +10,7 @@ units_choice = (
 			('Kgs', 'Kgs'),
 			('Nos', 'Nos'),
 			('Ltrs', 'Ltrs'),
+			('Mtrs', 'Mtrs')
 	)
 
 class UserProfileInfo(models.Model):
