@@ -41,6 +41,11 @@ class StockCreateForm(forms.ModelForm):
     part_no = self.cleaned_data.get('part_no')
     if not part_no:
       raise forms.ValidationError('This field is required')
+
+    stocks = Stock.objects.all()
+    for instance in stocks:
+      if instance.part_no == part_no:
+        raise forms.ValidationError(part_no + " exists")
     return part_no
 
   def clean_item_no(self):
@@ -79,6 +84,7 @@ class StockCreateForm(forms.ModelForm):
 
 
 class StockSearchForm(forms.ModelForm):
+  export_to_CSV = forms.BooleanField(required=False)
   class Meta:
     model = Stock
     fields = ['item_name', 'category', ]

@@ -29,7 +29,7 @@ class Stock(models.Model):
 	category = models.CharField(max_length=15,blank=False,null=False,
 					choices=category_choice)
 	subcategory = models.ForeignKey(SubCategory, on_delete=models.CASCADE)
-	part_no = models.CharField(max_length=15, blank=False, null=False)
+	part_no = models.CharField(max_length=15, blank=False, null=False, unique=True)
 	item_no = models.CharField(max_length=25, blank=True, null=True)
 	HSN_code = models.CharField(max_length=10, blank=True, null=True)
 	item_name = models.CharField(max_length=50, blank=True, null=True)

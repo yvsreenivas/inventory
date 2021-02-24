@@ -7,7 +7,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponseRedirect, HttpResponse
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
-
+import csv
 
 @login_required
 def user_logout(request):
@@ -48,25 +48,39 @@ def home(request):
 
 @login_required
 def list_items(request):
-	title = 'List of Assets and Consumables'
-	form = StockSearchForm(request.POST or None)
-	queryset = Stock.objects.all()
-	context = {
-		"header": title,
-		"queryset": queryset,
-		"form": form,
-	}
-	if request.method == 'POST':
-		queryset = Stock.objects.filter(
-					item_name__icontains=form['item_name'].value(),
-                    category__icontains=form['category'].value(),
-                    )
-		context = {
-		"form": form,
-		"header": title,
-		"queryset": queryset,
-	}
-	return render(request, "stocks/list_items.html", context)
+    title = 'List of Assets and Consumables'
+    form = StockSearchForm(request.POST or None)
+    queryset = Stock.objects.all()
+    context = {
+        "header": title,
+        "queryset": queryset,
+        "form": form,
+    }
+    if request.method == 'POST':
+        queryset = Stock.objects.filter(
+        item_name__icontains=form['item_name'].value(),
+            category__icontains=form['category'].value(),
+        )
+
+        if form['export_to_CSV'].value() == True:
+            response = HttpResponse(content_type='text/csv')
+            response['Content-Disposition'] = 'attachment; filename="List of stock.csv"'
+            writer = csv.writer(response)
+            writer.writerow(['CATEGORY','SUB CATEGORY','PART NO',
+             'ITEM NO','ITEM NAME', 'QUANTITY', 'UNITS','RATE', 'VALUE'])
+            instance = queryset
+            for stock in instance:
+                writer.writerow([stock.category,stock.subcategory,stock.part_no,
+                stock.item_no,stock.item_name, stock.quantity, stock.units,
+                stock.rate, (stock.quantity * stock.rate)])
+            return response
+
+        context = {
+        "form": form,
+        "header": title,
+        "queryset": queryset,
+    }
+    return render(request, "stocks/list_items.html", context)
 
 @login_required
 def add_items(request):
