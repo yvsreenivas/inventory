@@ -20,14 +20,16 @@
                {% endfor %}
        </ul>
   {% endif %}
-    <div class="jumbotron">
+    <!-- <div class="jumbotron"> -->
         <div class="header">
           {{header}}
         </div>
+        <span class="total_value">Value of Stock:{{total}}</span>
         <form method='POST' action=''>{% csrf_token %}
             {{form|crispy}}
                 <input type="submit" value='Search'/>
         </form>
+
         <br>
       <div class="display_table">
         <table class='table'>
@@ -63,7 +65,7 @@
         </table>
     </div>
 
-    </div>
+    <!-- </div> -->
   </main>
 
 
