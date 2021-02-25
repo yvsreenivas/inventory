@@ -1,5 +1,5 @@
 from django import forms
-from .models import Stock
+from .models import Stock, Issues
 from stocks.models import UserProfileInfo
 from django.contrib.auth.models import User
 
@@ -21,7 +21,7 @@ class StockCreateForm(forms.ModelForm):
   class Meta:
     model = Stock
     fields = ['category', 'subcategory', 'part_no', 'item_no',
-    'item_name', 'manufacturer', 'quantity','units', 'rate' ]
+    'item_name', 'manufacturer', 'quantity','units', 'rate', 'reorder_level' ]
     # labels = {  'category': ('Category of the item'),}
     widgets = {'part_no': forms.TextInput(attrs={'data-mask':"000-00-00000-00"})}
 
@@ -160,3 +160,20 @@ class ReceiveForm(forms.ModelForm):
 	class Meta:
 		model = Stock
 		fields = ['receive_quantity']
+
+class IssueCreateForm(forms.ModelForm):
+    class Meta:
+        model = Issues
+        fields = ['issue_quantity',  'issue_to']
+
+    def clean_issue_quantity(self):
+        issue_quantity = self.cleaned_data.get('issue_quantity')
+        if not issue_quantity:
+            raise forms.ValidationError('This field is required')
+        return issue_quantity
+
+    def clean_issue_to(self):
+        issue_to = self.cleaned_data.get('issue_to')
+        if not issue_to:
+            raise forms.ValidationError('This field is required')
+        return issue_to

@@ -29,6 +29,7 @@ urlpatterns = [
     path('delete_items/<str:pk>/', views.delete_items, name="delete_items"),
     path('stock_detail/<str:pk>/', views.stock_detail, name="stock_detail"),
     path('issue_items/<str:pk>/', views.issue_items, name="issue_items"),
+    path('issue_items2/<str:pk>/', views.issue_items2, name="issue_items2"),
     path('receive_items/<str:pk>/', views.receive_items, name="receive_items"),
     # path('accounts/', include('registration.backends.default.urls')),
     # path('register/', views.register, name='register'),

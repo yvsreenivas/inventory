@@ -45,6 +45,7 @@
                 <th>RATE</th>
                 <th>TIMESTAMP</th>
                 <th>LAST UPDATED</th>
+                <th>REORDER LEVEL</th>
             </tr>
             </thead>
             {% for instance in queryset %}
@@ -59,6 +60,7 @@
                     <td>{{instance.rate | intcomma }} </td>
                     <td>{{instance.timestamp}}</td>
                     <td>{{instance.last_updated}}</td>
+                    <td>{{instance.reorder_level}}</td>
                 </tr>
 
             {% endfor %}

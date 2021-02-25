@@ -9,7 +9,10 @@ class StockCreateAdmin(admin.ModelAdmin):
    list_filter = ['category', 'subcategory']
    search_fields = ['category', 'item_name']
 
+class IssuesAdmin(admin.ModelAdmin):
+   list_display = ['stock','issue_quantity', 'issue_to', 'updated_by','last_updated' ]
 
 admin.site.register(UserProfileInfo)
 admin.site.register(Stock, StockCreateAdmin)
 admin.site.register(SubCategory)
+admin.site.register(Issues, IssuesAdmin)

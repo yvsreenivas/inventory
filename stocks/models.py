@@ -8,6 +8,7 @@ category_choice = (
 
 units_choice = (
 			('Kgs', 'Kgs'),
+			('gms', 'Gms'),
 			('Nos', 'Nos'),
 			('Ltrs', 'Ltrs'),
 			('Mtrs', 'Mtrs')
@@ -53,3 +54,16 @@ class Stock(models.Model):
 
 	def __str__(self):
 		return self.item_name
+
+class Issues(models.Model):
+	stock = models.ForeignKey(Stock, on_delete=models.CASCADE)
+	issue_quantity = models.DecimalField(default='0', max_digits=10, decimal_places=2, blank=True, null=True)
+	units = models.CharField(max_length=5,blank=False,null=False,
+					choices=units_choice)
+	issue_to = models.CharField(max_length=10, blank=True, null=True)
+	last_updated = models.DateTimeField(auto_now_add=False, auto_now=True)
+	timestamp = models.DateTimeField(auto_now_add=True, auto_now=False)
+	updated_by = models.CharField(max_length=50, blank=False, null=False)
+
+	def __str__(self):
+		return self.stock.item_name

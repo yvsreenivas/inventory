@@ -18,7 +18,7 @@
         </div>
 
         <br>
-        <a href="{% url 'issue_items' queryset.id %}"><div class='btn btn-danger'>ISSUE THIS ITEM</div></a>
+        <a href="{% url 'issue_items2' queryset.id %}"><div class='btn btn-danger'>ISSUE THIS ITEM</div></a>
         <a href="{% url 'receive_items' queryset.id %}"><div class='btn btn-primary'>RECEIVE THIS ITEM</div></a>
 
           <br><br>
@@ -41,7 +41,4 @@
 
     </div>
   </main>
-
-
-
 {% endblock %}

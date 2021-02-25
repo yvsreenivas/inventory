@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
-from .models import Stock
+from .models import Stock, Issues
 from .forms import *
 from stocks.forms import UserForm,UserProfileInfoForm
 from django.contrib.auth import authenticate, login, logout
@@ -176,9 +176,36 @@ def receive_items(request, pk):
 		return redirect('/stock_detail/'+str(instance.id))
 		# return HttpResponseRedirect(instance.get_absolute_url())
 	context = {
-			"title": 'Reaceive ' + str(queryset.item_name),
+			"title": 'Receive ' + str(queryset.item_name),
 			"instance": queryset,
 			"form": form,
 			"username": 'Receive By: ' + str(request.user),
 		}
 	return render(request, "stocks/add_items.html", context)
+
+@login_required
+def issue_items2(request, pk):
+    a  = Stock.objects.get(id=pk)
+    if request.method == 'POST':
+        f = IssueCreateForm(request.POST)
+        if f.is_valid():
+            instance = f.save(commit=False)
+            instance.updated_by = request.user.username
+            if a.quantity >= instance.issue_quantity:
+                a.quantity -= instance.issue_quantity
+                a.save()
+                instance.stock = a
+                messages.success(request, "Issued SUCCESSFULLY. " + str(a.quantity) + " " + str(a.item_name) + "s now left in Store")
+                instance.save()
+            else:
+                messages.error(request, "Issued failed. " + str(a.quantity) + " " + str(a.item_name) + "s is not enough to complete the issue")
+
+            return redirect('/stock_detail/'+str(a.id))
+    f = IssueCreateForm(request.POST)
+    context={
+		"title": 'Issue ' + str(a.item_name),
+		"queryset": a,
+		"form": f,
+	    "username": 'Issue By: ' + str(request.user),
+	}
+    return render(request, "stocks/add_items.html", context)
