@@ -10,10 +10,11 @@
     <div class="collapse navbar-collapse" id="navbarCollapse">
       <ul class="navbar-nav mr-auto">
         {% if request.user.is_authenticated %}
-        <div class="btn-group">
-          <button type="button" class="btn btn-primary">Parts master</button>
-          <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <span class="sr-only">Toggle Dropdown</span>
+
+
+        <div class="dropdown">
+          <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Parts Master
           </button>
           <div class="dropdown-menu">
             <a class="dropdown-item" href="/add_items">Add Item</a>
